@@ -2,7 +2,6 @@ import React, { FC, Children } from "react";
 import { css } from "@emotion/react";
 
 const tilesContainer = css`
-  max-width: 800px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -11,11 +10,16 @@ const tilesContainer = css`
   margin: auto;
 `;
 
+const tileWrapper = css`
+  flex: 1 1 auto;
+  margin-bottom: 1rem;
+`;
+
 const TilesContainer: FC = (props) => {
   return (
     <div css={tilesContainer}>
       {Children.map(props.children, (child) => {
-        <div>{child}</div>;
+        return <div css={tileWrapper}>{child}</div>;
       })}
     </div>
   );

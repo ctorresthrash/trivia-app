@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { navigate } from "@reach/router";
 import Layout from "../layouts/Layout";
-import { TriviaCategory, User } from "../types";
-import useAuthRedirect from "../components/useAuthRedirect";
+import { TriviaCategory } from "../types";
 import useFetch from "../components/useFetch";
 import { getTriviaCategories } from "../services/trivia";
 import { STATUSES } from "../reducers/fetchReducer";
@@ -11,17 +11,18 @@ import { actions } from "../reducers/userReducer";
 import { RouteComponentProps } from "@reach/router";
 import TilesContainer from "../components/TilesContainer";
 
-const Categories: React.FC<RouteComponentProps> = (props) => {
-  useAuthRedirect((user: User) => !Boolean(user), "/");
+interface Props extends RouteComponentProps {}
 
+const Categories: React.FC<Props> = (props) => {
   const { status, data, error } = useFetch<TriviaCategory[]>(
-    getTriviaCategories()
+    getTriviaCategories
   );
 
   const [, dispatch] = useContext(UserContext);
 
   const onClickCategory = (category: TriviaCategory) => {
     dispatch(actions.setCategory(category));
+    navigate(`/trivia/categories/${category.id}`);
   };
 
   return (
@@ -31,7 +32,11 @@ const Categories: React.FC<RouteComponentProps> = (props) => {
       {status === STATUSES.success && data && (
         <TilesContainer>
           {data.map((category) => (
-            <TriviaCategoryCard category={category} onClick={onClickCategory} />
+            <TriviaCategoryCard
+              key={category.id}
+              category={category}
+              onClick={onClickCategory}
+            />
           ))}
         </TilesContainer>
       )}

@@ -1,12 +1,11 @@
 import { css } from "@emotion/react";
 import { RouteComponentProps } from "@reach/router";
-import { Form, Formik, FormikValues, Field } from "formik";
-import React, { useContext } from "react";
+import { Form, Formik } from "formik";
+import React, { FC, useContext } from "react";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import Card from "../components/Card";
 import { User } from "../types";
-import useAuthRedirect from "../components/useAuthRedirect";
 import { UserContext } from "../context/UserContext";
 import { actions } from "../reducers/userReducer";
 
@@ -32,9 +31,10 @@ const cardCss = css`
   max-width: 500px;
 `;
 
-function UserForm(props: Props) {
-  const [state, dispatch] = useContext(UserContext);
-  useAuthRedirect((_user: User) => Boolean(_user), "/trivia/categories");
+interface Props extends RouteComponentProps {}
+
+const UserForm: FC<RouteComponentProps> = (props) => {
+  const [, dispatch] = useContext(UserContext);
 
   const handleSubmit = (values: User) => {
     dispatch(actions.setUser(values));
@@ -70,6 +70,6 @@ function UserForm(props: Props) {
       </Formik>
     </div>
   );
-}
+};
 
 export default UserForm;

@@ -6,13 +6,16 @@ import fetchReducer, {
 } from "../reducers/fetchReducer";
 import { ActionWithPayload } from "../types";
 
-export default function useFetch<T>(promise: Promise<T>): FetchState<T | null> {
+export default function useFetch<T>(
+  fetchPromise: () => Promise<T>
+): FetchState<T | null> {
   const [state, dispatch] = useReducer<
     Reducer<FetchState<T | null>, ActionWithPayload<T | string | null>>
   >(fetchReducer, INITIAL_STATE);
+
   useEffect(() => {
     dispatch(actions.loading());
-    promise
+    fetchPromise()
       .then((result) => {
         dispatch(actions.success(result));
       })
@@ -20,5 +23,6 @@ export default function useFetch<T>(promise: Promise<T>): FetchState<T | null> {
         dispatch(actions.error(error.message));
       });
   }, []);
+
   return state;
 }

@@ -7,8 +7,8 @@ const pageContainerCss = css`
   margin: auto;
 `;
 
-const Trivia: React.FC = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   return <div css={pageContainerCss}>{children}</div>;
 };
 
-export default Trivia;
+export default Layout;

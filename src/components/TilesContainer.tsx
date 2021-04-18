@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, Children } from "react";
+import { css } from "@emotion/react";
 
-const categoriesContainerCss = css`
+const tilesContainer = css`
   max-width: 800px;
   display: flex;
   flex-wrap: wrap;
@@ -10,9 +11,14 @@ const categoriesContainerCss = css`
   margin: auto;
 `;
 
-  const {} = props;
-
-  return <div></div>;
+const TilesContainer: FC = (props) => {
+  return (
+    <div css={tilesContainer}>
+      {Children.map(props.children, (child) => {
+        <div>{child}</div>;
+      })}
+    </div>
+  );
 };
 
 export default TilesContainer;

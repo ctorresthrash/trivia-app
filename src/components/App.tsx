@@ -4,6 +4,7 @@ import { Global, css } from "@emotion/react";
 import UserForm from "../pages/UserForm";
 import { UserContextProvider } from "../context/UserContext";
 import Categories from "../pages/Categories";
+import ProtectedRoute from "./ProtectedRoute";
 
 const globalCss = css`
   * {
@@ -62,7 +63,11 @@ function App() {
       <UserContextProvider>
         <Router>
           <UserForm path="/" />
-          <Categories path="/trivia/categories" />
+          <ProtectedRoute
+            Component={Categories}
+            Shared={UserForm}
+            path="/trivia/categories"
+          />
         </Router>
       </UserContextProvider>
     </React.StrictMode>

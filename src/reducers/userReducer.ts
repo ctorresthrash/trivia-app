@@ -24,7 +24,9 @@ export enum TYPES {
   addQuestionAnswer = "ADD_QUESTION_ANSWER",
 }
 
-export const initialState: UserState = {
+export const initialState: UserState = JSON.parse(
+  localStorage.getItem("userState") as string
+) || {
   user: undefined,
   startTime: undefined,
   questions: [],

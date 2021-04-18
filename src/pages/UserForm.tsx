@@ -2,11 +2,11 @@ import { css } from "@emotion/react";
 import { RouteComponentProps } from "@reach/router";
 import { Form, Formik, FormikValues, Field } from "formik";
 import React, { useContext } from "react";
-import Button from "./Button";
-import TextInput from "./TextInput";
-import Card from "./Card";
+import Button from "../components/Button";
+import TextInput from "../components/TextInput";
+import Card from "../components/Card";
 import { User } from "../types";
-import useAuthRedirect from "./useAuthRedirect";
+import useAuthRedirect from "../components/useAuthRedirect";
 import { UserContext } from "../context/UserContext";
 import { actions } from "../reducers/userReducer";
 
@@ -34,7 +34,7 @@ const cardCss = css`
 
 function UserForm(props: Props) {
   const [state, dispatch] = useContext(UserContext);
-  useAuthRedirect((_user: User) => Boolean(_user), "/trivia");
+  useAuthRedirect((_user: User) => Boolean(_user), "/trivia/categories");
 
   const handleSubmit = (values: User) => {
     dispatch(actions.setUser(values));

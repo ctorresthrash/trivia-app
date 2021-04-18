@@ -1,7 +1,7 @@
 import React from "react";
 import { Router } from "@reach/router";
 import { Global, css } from "@emotion/react";
-import UserForm from "./UserForm";
+import UserForm from "../pages/UserForm";
 import { UserContextProvider } from "../context/UserContext";
 import Categories from "../pages/Categories";
 

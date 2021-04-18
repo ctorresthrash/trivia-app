@@ -8,6 +8,7 @@ import Card from "../components/Card";
 import { User } from "../types";
 import { UserContext } from "../context/UserContext";
 import { actions } from "../reducers/userReducer";
+import useRedirectTo from "../components/useRedirectTo";
 
 interface Props extends RouteComponentProps {}
 
@@ -33,8 +34,10 @@ const cardCss = css`
 
 interface Props extends RouteComponentProps {}
 
-const UserForm: FC<RouteComponentProps> = (props) => {
-  const [, dispatch] = useContext(UserContext);
+const UserForm: FC<Props> = (props) => {
+  const [state, dispatch] = useContext(UserContext);
+
+  useRedirectTo(Boolean(state.user), "/trivia/categories");
 
   const handleSubmit = (values: User) => {
     dispatch(actions.setUser(values));

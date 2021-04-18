@@ -10,19 +10,23 @@ import { UserContext } from "../context/UserContext";
 import { actions } from "../reducers/userReducer";
 import { RouteComponentProps } from "@reach/router";
 import TilesContainer from "../components/TilesContainer";
+import useRedirectTo from "../components/useRedirectTo";
 
 interface Props extends RouteComponentProps {}
 
 const Categories: React.FC<Props> = (props) => {
+  const [state, dispatch] = useContext(UserContext);
+  const { category } = state;
+  const hasCategory = Boolean(category);
+  const categoryPath = hasCategory ? `/trivia/categories/${category?.id}` : "";
+  useRedirectTo(hasCategory, categoryPath);
+
   const { status, data, error } = useFetch<TriviaCategory[]>(
     getTriviaCategories
   );
 
-  const [, dispatch] = useContext(UserContext);
-
   const onClickCategory = (category: TriviaCategory) => {
     dispatch(actions.setCategory(category));
-    navigate(`/trivia/categories/${category.id}`);
   };
 
   return (

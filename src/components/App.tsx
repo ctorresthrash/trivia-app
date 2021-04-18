@@ -5,6 +5,7 @@ import UserForm from "../pages/UserForm";
 import { UserContextProvider } from "../context/UserContext";
 import Categories from "../pages/Categories";
 import ProtectedRoute from "./ProtectedRoute";
+import Trivia from "./Trivia";
 
 const globalCss = css`
   * {
@@ -67,6 +68,11 @@ function App() {
             Component={Categories}
             Shared={UserForm}
             path="/trivia/categories"
+          />
+          <ProtectedRoute
+            Component={Trivia}
+            Shared={UserForm}
+            path="/trivia/categories/:id"
           />
         </Router>
       </UserContextProvider>

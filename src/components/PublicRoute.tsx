@@ -3,8 +3,8 @@ import React, { ComponentType, FC, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 interface Props extends RouteComponentProps {
-  Component: ComponentType;
-  Shared: ComponentType;
+  Component: ComponentType<any>;
+  Shared: ComponentType<any>;
 }
 
 const PublicRoute: React.FC<Props> = ({ Component, Shared, ...props }) => {

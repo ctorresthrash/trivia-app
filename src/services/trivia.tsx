@@ -17,8 +17,8 @@ export const getTriviaCategories: () => Promise<TriviaCategory[]> = () =>
 export const getTriviaQuestions: (req: {
   category: number;
   amount: number;
-}) => AxiosPromise<[TriviaQuestion]> = (req) =>
+}) => Promise<TriviaQuestion[]> = (req) =>
   triviaAPI({
     url: `/api.php${qs.stringify(req, { addQueryPrefix: true })}`,
     method: "GET",
-  });
+  }).then((response) => response.data.results);

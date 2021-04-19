@@ -21,8 +21,8 @@ const Categories: React.FC<Props> = (props) => {
   const categoryPath = hasCategory ? `/trivia/categories/${category?.id}` : "";
   useRedirectTo(hasCategory, categoryPath);
 
-  const { status, data, error } = useFetch<TriviaCategory[]>(
-    getTriviaCategories
+  const { status, data, error } = useFetch<TriviaCategory[]>(() =>
+    getTriviaCategories()
   );
 
   const onClickCategory = (category: TriviaCategory) => {

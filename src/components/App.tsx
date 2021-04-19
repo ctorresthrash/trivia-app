@@ -72,7 +72,7 @@ function App() {
           <ProtectedRoute
             Component={Trivia}
             Shared={UserForm}
-            path="/trivia/categories/:id"
+            path="/trivia/categories/:categoryId"
           />
         </Router>
       </UserContextProvider>

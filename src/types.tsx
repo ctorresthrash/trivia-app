@@ -21,14 +21,18 @@ export type TriviaQuestion = {
   id: number;
   question: string;
   type: "multiple" | "boolean";
-  correctAnswer: string;
-  incorrectAnswers: [string];
+  correct_answer: string;
+  incorrect_answers: string[];
 };
 
 export class TriviaQuestionAnswer {
   constructor(public question: TriviaQuestion, public answer: string) {}
 
   isCorrect() {
-    this.question.correctAnswer === this.answer;
+    this.question.correct_answer === this.answer;
   }
+}
+
+export interface QuestionFormValues {
+  answer: string;
 }

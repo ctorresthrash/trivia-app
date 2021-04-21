@@ -1,8 +1,7 @@
-import React, { HTMLProps } from "react";
+import React, { ButtonHTMLAttributes, FC } from "react";
 import { css } from "@emotion/react";
 
-interface Props extends HTMLProps<HTMLButtonElement> {
-}
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 const buttonCss = css`
   box-shadow: 2px 2px 5px -1px #3dc21b;
@@ -23,12 +22,8 @@ const buttonCss = css`
   }
 `;
 
-function Button({ children, onClick }: Props) {
-  return (
-    <button css={buttonCss} onClick={onClick}>
-      {children}
-    </button>
-  );
-}
+const Button: FC<Props> = (props) => {
+  return <button css={buttonCss} {...props} />;
+};
 
 export default Button;

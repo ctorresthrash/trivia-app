@@ -115,7 +115,7 @@ export default function userReducer(
       };
     }
 
-    case TYPES.setQuestions: {
+    case TYPES.setCurrentQuestion: {
       const currentQuestion = action.payload as TriviaQuestion;
       return {
         ...state,
